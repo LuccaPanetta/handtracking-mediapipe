@@ -35,6 +35,5 @@ Controles durante la recolección
 - n: pasa al siguiente gesto configurado (verás el nombre en pantalla).
 - q: termina recolección y entrena el modelo.
 - ESC: salir.
-- Opcional (modo manual): con --manual, presioná c para guardar una muestra a demanda.
 
 
