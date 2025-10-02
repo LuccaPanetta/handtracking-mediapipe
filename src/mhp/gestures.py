@@ -13,5 +13,5 @@ def load_gestures() -> List[str]:
         gestures = data.get("gestures", [])
         if isinstance(gestures, list) and gestures:
             return [str(g) for g in gestures]
-    # fallback defaults
+    
     return ["Open", "Fist", "Peace", "ThumbsUp"]
