@@ -10,13 +10,12 @@ mp_draw = mp.solutions.drawing_utils
 
 def landmarks_to_vector(hand_landmarks: mp.framework.formats.landmark_pb2.NormalizedLandmarkList) -> np.ndarray:
     arr = np.array([[lm.x, lm.y, lm.z] for lm in hand_landmarks.landmark], dtype=np.float32)
-    return arr.flatten()  # shape (63,)
+    return arr.flatten() 
 
 
 class HandDetector:
     def __init__(self, max_num_hands: int = 1, min_detection_confidence: float = 0.7,
                  min_tracking_confidence: float = 0.5, model_complexity: int = 0):
-        # model_complexity=0 is faster
         self.hands = mp_hands.Hands(
             static_image_mode=False,
             max_num_hands=max_num_hands,
