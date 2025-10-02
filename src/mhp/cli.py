@@ -48,7 +48,7 @@ def collect_interactive(
                 frame = cv2.flip(frame, 1)
                 frame_count += 1
 
-                # Warmup: skip detection for first N frames to let camera settle
+                # Warmup
                 if frame_count <= warmup_frames:
                     cv2.putText(
                         frame,
@@ -72,10 +72,7 @@ def collect_interactive(
                     cv2.putText(frame, status, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
                     if landmarks_vec is not None:
-                        if manual:
-                            pass  # wait for key press 'c'
-                        else:
-                            if (last_landmarks is None) or (np.linalg.norm(landmarks_vec - last_landmarks) > movement_threshold):
+                        if (last_landmarks is None) or (np.linalg.norm(landmarks_vec - last_landmarks) > movement_threshold):
                                 append_sample(gestures[current_idx], landmarks_vec)
                                 last_landmarks = landmarks_vec
                                 samples_for_current += 1
@@ -161,7 +158,6 @@ def parse_args():
     p.add_argument("--draw", action="store_true", help="Dibujar landmarks en la imagen")
     p.add_argument("--no-draw", dest="draw", action="store_false")
     p.set_defaults(draw=True)
-    p.add_argument("--manual", action="store_true", help="Modo de recolección manual (tecla 'c' para capturar)")
     p.add_argument("--warmup-frames", type=int, default=10)
     return p.parse_args()
 
