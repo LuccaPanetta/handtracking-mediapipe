@@ -171,7 +171,6 @@ def main():
         process_every_n=args.process_every_n,
         movement_threshold=args.movement_threshold,
         draw=args.draw,
-        manual=args.manual,
         warmup_frames=args.warmup_frames,
     )
     if ok:
