@@ -17,10 +17,6 @@ class VideoCaptureThread:
         target_fps: int | None = 30,
         set_small_buffer: bool = True,
     ):
-        """
-        On Windows, passing api_preference=cv2.CAP_DSHOW often reduces startup latency.
-        Setting MJPG, FPS and a small buffer helps keep latency low.
-        """
         self.source = source
         self.width = width
         self.height = height
@@ -37,7 +33,6 @@ class VideoCaptureThread:
     def start(self):
         if self._thread and self._thread.is_alive():
             return self
-        # Try to open with preferred backend (e.g., CAP_DSHOW on Windows), fallback to default
         if self.api_preference is not None:
             self.cap = cv2.VideoCapture(self.source, self.api_preference)
         else:
@@ -61,7 +56,6 @@ class VideoCaptureThread:
                 pass
         if self.set_small_buffer:
             try:
-                # Not all backends honor this, but it's safe to attempt
                 self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
             except Exception:
                 pass
