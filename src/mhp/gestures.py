@@ -14,4 +14,4 @@ def load_gestures() -> List[str]:
         if isinstance(gestures, list) and gestures:
             return [str(g) for g in gestures]
     
-    return ["Open", "Fist", "Peace", "ThumbsUp"]
+    return ["Open", "Fist", "Peace", "ThumbsUp"] #Si el yaml no funciona te carga estos 4
